@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1358px;
+  margin: 0 42px 24px 40px;
+  padding: 20px 40px;
+  font-family: "CabinetGrotesk-Regular", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}

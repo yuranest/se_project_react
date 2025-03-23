@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 32px 40px 28px;
+  height: 40px;
+  max-width: 1360px;
+  width: 100%;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__logo {
+  height: 24px; /* adjust to match logo height */
+}
+
+.header__location {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__button {
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.header__name {
+  font-weight: 500;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
