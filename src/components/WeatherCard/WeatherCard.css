@@ -1,0 +1,30 @@
+.weather-card {
+  margin: 28px 0 40px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  max-width: 1360px;
+  max-height: 80px;
+  object-fit: cover;
+  width: 100%;
+  object-position: right top;
+}
+
+.weather__temp {
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  padding: 20px 0 20px 16px;
+}
+@media (max-width: 768px) {
+  .weather-card {
+    height: 60px;
+    margin: 16px;
+  }
+
+  .card-list {
+    justify-content: flex-start;
+  }
+}

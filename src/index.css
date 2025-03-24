@@ -1,6 +1,5 @@
-@font-face {
-  font-family: "CabinetGrotesk-Regular";
-  src: url("./vendor/fonts/CabinetGrotesk-Regular.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
+@import url(./vendor/normalize.css);
+
+body {
+  background-color: #f3f3f3;
 }

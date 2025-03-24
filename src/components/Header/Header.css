@@ -1,43 +1,41 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 32px 40px 28px;
-  height: 40px;
-  max-width: 1360px;
-  width: 100%;
-}
-
-.header__left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+  margin-top: 32px;
 }
 
 .header__logo {
-  height: 24px; /* adjust to match logo height */
+  margin-right: 24px;
+  width: 89px;
+  height: 40px;
 }
 
-.header__location {
-  font-size: 18px;
-  font-weight: 500;
+.header__date {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .header__right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 
 .header__button {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 20px;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+  margin: 0 20px 0 auto;
 }
 
-.header__name {
-  font-weight: 500;
+.header__username {
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
 }
 
 .header__avatar {

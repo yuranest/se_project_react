@@ -1,6 +1,6 @@
 import "./Header.css";
-import logo from "../../assets/logo.png"; // Logo
-import avatar from "../../assets/avatar.jpg"; // Avatar
+import logo from "../../assets/logo.svg"; // Logo
+import avatar from "../../assets/avatar.png"; // Avatar
 
 function Header({ onAddClick, location, temperature }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -10,16 +10,14 @@ function Header({ onAddClick, location, temperature }) {
 
   return (
     <header className="header">
-      <div className="header__left">
-        <img src={logo} alt="WTWR logo" className="header__logo" />
-        <p className="header__date">
-          {currentDate}, {location}
-        </p>
-      </div>
+      <img src={logo} alt="WTWR logo" className="header__logo" />
+      <p className="header__date">
+        {currentDate}, {location}
+      </p>
+      <button className="header__button" onClick={onAddClick}>
+        + Add clothes
+      </button>
       <div className="header__right">
-        <button className="header__button" onClick={onAddClick}>
-          + Add clothes
-        </button>
         <p className="header__username">Terrence Tegegne</p>
         <img src={avatar} alt="User avatar" className="header__avatar" />
       </div>

@@ -1,5 +1,13 @@
-.main {
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0 40px;
+.card__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+.cards__text {
+  height: 25px;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 34px;
 }

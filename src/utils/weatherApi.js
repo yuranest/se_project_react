@@ -1,13 +1,11 @@
 import { latitude, longitude, weatherApiKey } from "./constants";
 
-const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=imperial`;
 
 export function getWeatherData() {
-  return fetch(
-    `${BASE_URL}?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey}`
-  ).then((res) => {
+  return fetch(weatherUrl).then((res) => {
     if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
+      throw new Error("Weather fetch failed");
     }
     return res.json();
   });

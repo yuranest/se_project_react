@@ -14,6 +14,9 @@ function App() {
   const [weatherData, setWeatherData] = useState({
     temperature: 0,
     location: "City",
+    condition: "",
+    sunrise: 0,
+    sunset: 0,
   });
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -25,6 +28,9 @@ function App() {
         setWeatherData({
           temperature: Math.round(data.main.temp),
           location: data.name,
+          condition: data.weather[0].main.toLowerCase(),
+          sunrise: data.sys.sunrise,
+          sunset: data.sys.sunset,
         });
       })
       .catch((err) => console.error("Weather fetch failed:", err));
@@ -44,35 +50,39 @@ function App() {
 
   return (
     <div className="page">
-      <Header
-        onAddClick={handleAddClick}
-        location={weatherData.location}
-        temperature={weatherData.temperature}
-      />
-      <Main
-        weatherType={getWeatherType(weatherData.temperature)}
-        temperature={weatherData.temperature}
-        location={weatherData.location}
-        clothingItems={clothingItems}
-        onCardClick={handleCardClick}
-      />
-      <Footer />
+      <div className="page__content">
+        <Header
+          onAddClick={handleAddClick}
+          location={weatherData.location}
+          temperature={weatherData.temperature}
+        />
+        <Main
+          weatherType={getWeatherType(weatherData.temperature)}
+          clothingItems={clothingItems}
+          onCardClick={handleCardClick}
+          temperature={weatherData.temperature}
+          location={weatherData.location}
+          condition={weatherData.condition}
+          sunrise={weatherData.sunrise}
+          sunset={weatherData.sunset}
+        />
+        <Footer />
 
-      {/* Modals */}
-      {selectedCard && (
-        <ItemModal item={selectedCard} onClose={handleModalClose} />
-      )}
+        {selectedCard && (
+          <ItemModal item={selectedCard} onClose={handleModalClose} />
+        )}
 
-      {activeModal === "add-clothes" && (
-        <ModalWithForm
-          name="add-clothes"
-          title="New Garment"
-          buttonText="Add Garment"
-          onClose={handleModalClose}
-        >
-          {/* Inputs will go here later */}
-        </ModalWithForm>
-      )}
+        {activeModal === "add-clothes" && (
+          <ModalWithForm
+            name="add-clothes"
+            title="New Garment"
+            buttonText="Add Garment"
+            onClose={handleModalClose}
+          >
+            {/* Inputs */}
+          </ModalWithForm>
+        )}
+      </div>
     </div>
   );
 }
