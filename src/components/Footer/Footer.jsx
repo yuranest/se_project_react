@@ -1,10 +1,12 @@
 import "./Footer.css";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <p>Developed by Yuriy Nesterenko</p>
-      <p>2025</p>
+      <p>{currentYear}</p>
     </footer>
   );
 }

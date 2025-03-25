@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -18,9 +18,19 @@ function App() {
     sunrise: 0,
     sunset: 0,
   });
+
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [activeModal, setActiveModal] = useState("");
+
+  // Form state
+  const [formValues, setFormValues] = useState({
+    name: "",
+    imageUrl: "",
+    weather: "hot",
+  });
+
+  const isFormValid = formValues.name && formValues.imageUrl;
 
   useEffect(() => {
     getWeatherData()
@@ -39,13 +49,35 @@ function App() {
   }, []);
 
   const handleCardClick = (item) => setSelectedCard(item);
+
   const handleModalClose = () => {
     setSelectedCard(null);
     setActiveModal("");
+    setFormValues({ name: "", imageUrl: "", weather: "hot" });
   };
 
-  const handleAddClick = () => {
-    setActiveModal("add-clothes");
+  const handleAddClick = () => setActiveModal("add-clothes");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newItem = {
+      _id: Date.now(),
+      name: formValues.name,
+      link: formValues.imageUrl,
+      weather: formValues.weather,
+    };
+
+    setClothingItems((prev) => [newItem, ...prev]);
+    handleModalClose();
   };
 
   return (
@@ -56,6 +88,7 @@ function App() {
           location={weatherData.location}
           temperature={weatherData.temperature}
         />
+
         <Main
           weatherType={getWeatherType(weatherData.temperature)}
           clothingItems={clothingItems}
@@ -66,6 +99,7 @@ function App() {
           sunrise={weatherData.sunrise}
           sunset={weatherData.sunset}
         />
+
         <Footer />
 
         {selectedCard && (
@@ -78,8 +112,53 @@ function App() {
             title="New Garment"
             buttonText="Add Garment"
             onClose={handleModalClose}
+            onSubmit={handleSubmit}
+            isFormValid={isFormValid}
           >
-            {/* Inputs */}
+            <label className="modal__label">
+              Name
+              <input
+                type="text"
+                className="modal__input"
+                name="name"
+                placeholder="Name"
+                value={formValues.name}
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+
+            <label className="modal__label">
+              Image URL
+              <input
+                type="url"
+                className="modal__input"
+                name="imageUrl"
+                placeholder="Image URL"
+                value={formValues.imageUrl}
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+
+            <fieldset className="modal__fieldset">
+              <legend className="modal__legend">
+                Select the weather type:
+              </legend>
+              {["hot", "warm", "cold"].map((type) => (
+                <label key={type} className="modal__radio-label">
+                  <input
+                    type="radio"
+                    className="modal__radio"
+                    name="weather"
+                    value={type}
+                    checked={formValues.weather === type}
+                    onChange={handleInputChange}
+                  />
+                  {type}
+                </label>
+              ))}
+            </fieldset>
           </ModalWithForm>
         )}
       </div>
