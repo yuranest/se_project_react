@@ -23,14 +23,13 @@ WTWR helps users decide what to wear based on real-time weather data. When a use
 
 ## 🗂 File Structure
 
-# src/
-
-├── assets/ # Static images (weather backgrounds)
-├── components/ # React components (Header, Main, Footer, etc.)
-├── utils/ # API helpers and constants
+src/
+├── assets/ # Static images (like weather backgrounds)
+├── components/ # All React UI components (Header, Main, Footer, etc.)
+├── utils/ # API helpers, constants
 ├── vendor/ # Fonts and normalize.css
-├── App.jsx/ # Main app component
-└── main.jsx/ # App entry point
+├── App.jsx # Main app component
+└── main.jsx # App entry point
 
 ---
 
