@@ -31,11 +31,10 @@
 .modal__close {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 28px;
   background: none;
   border: none;
-  font-size: 28px;
-  font-weight: 400;
+  padding: 0;
   cursor: pointer;
   color: #000;
 }
@@ -49,7 +48,7 @@
 
 .modal__input {
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 1px solid #000;
   background-color: transparent;
   padding: 10px 0;
   font-size: 16px;
@@ -86,17 +85,28 @@
 }
 
 .modal__submit {
-  margin-top: 10px;
-  background-color: #d9d9d9;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 24px;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
-  padding: 12px;
-  font-weight: 600;
   cursor: pointer;
+  align-self: flex-start;
   transition: background-color 0.3s ease;
 }
 
 .modal__submit:hover {
-  background-color: #bfbfbf;
+  background-color: #4c4c4c;
+}
+
+.modal__submit:disabled {
+  background-color: #0000004d;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 0.6;
 }
