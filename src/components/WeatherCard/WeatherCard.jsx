@@ -1,4 +1,3 @@
-import React from "react";
 import "./WeatherCard.css";
 
 function WeatherCard({ temperature, condition, sunrise, sunset }) {
@@ -30,11 +29,13 @@ function WeatherCard({ temperature, condition, sunrise, sunset }) {
   const backgroundImage = getBackgroundImage();
 
   return (
-    <section
-      className="weather-card"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <p className="weather__temp">{temperature}°F</p>
+    <section className="weather-card">
+      <img
+        src={backgroundImage}
+        alt="weather visual"
+        className="weather-card__image"
+      />
+      <p className="weather__temp">{temperature}°C</p>
     </section>
   );
 }

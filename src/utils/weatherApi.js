@@ -1,6 +1,6 @@
 import { latitude, longitude, weatherApiKey } from "./constants";
 
-const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=imperial`;
+const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`;
 
 export function getWeatherData() {
   return fetch(weatherUrl).then((res) => {
@@ -12,7 +12,7 @@ export function getWeatherData() {
 }
 
 export function getWeatherType(temp) {
-  if (temp >= 86) return "hot";
-  if (temp >= 66) return "warm";
+  if (temp >= 30) return "hot";
+  if (temp >= 19) return "warm";
   return "cold";
 }

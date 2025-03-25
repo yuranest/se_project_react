@@ -1,5 +1,5 @@
-export const latitude = "51.5072";
-export const longitude = "-0.1276";
+export const latitude = "37.6068";
+export const longitude = "55.7386";
 
 export const weatherApiKey = "d766de37519cc0edf21331d285fda889"; // Api
 

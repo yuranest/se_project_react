@@ -1,4 +1,3 @@
-import React from "react";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
@@ -28,7 +27,7 @@ function Main({
       />
       <section className="cards">
         <p className="cards__text">
-          Today is {temperature} &deg;F / You may want to wear:{" "}
+          Today is {temperature} &deg;C / You may want to wear:
         </p>
       </section>
       <ul className="card__list">
