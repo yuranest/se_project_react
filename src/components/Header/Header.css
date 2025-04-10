@@ -29,7 +29,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 0 20px 0 auto;
+  margin-right: 20px;
 }
 
 .header__username {
