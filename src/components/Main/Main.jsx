@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
@@ -12,6 +14,13 @@ function Main({
   sunrise,
   sunset,
 }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
+  const convertedTemperature =
+    currentTemperatureUnit === "F"
+      ? Math.round((temperature * 9) / 5 + 32)
+      : temperature;
+
   const filteredItems = clothingItems.filter(
     (item) => item.weather === weatherType
   );
@@ -27,7 +36,8 @@ function Main({
       />
       <section className="cards">
         <p className="cards__text">
-          Today is {temperature} &deg;C / You may want to wear:
+          Today is {convertedTemperature}°{currentTemperatureUnit} / You may
+          want to wear:
         </p>
       </section>
       <ul className="card__list">

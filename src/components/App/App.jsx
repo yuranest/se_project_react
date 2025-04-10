@@ -4,7 +4,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import { defaultClothingItems } from "../../utils/constants";
 import { getWeatherData, getWeatherType } from "../../utils/weatherApi";
 
@@ -22,6 +22,10 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [activeModal, setActiveModal] = useState("");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit((unit) => (unit === "F" ? "C" : "F"));
+  };
 
   // Form state
   const [formValues, setFormValues] = useState({
@@ -81,88 +85,92 @@ function App() {
   };
 
   return (
-    <div className="page">
-      <div className="page__content">
-        <Header
-          onAddClick={handleAddClick}
-          location={weatherData.location}
-          temperature={weatherData.temperature}
-        />
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
+      <div className="page">
+        <div className="page__content">
+          <Header
+            onAddClick={handleAddClick}
+            location={weatherData.location}
+            temperature={weatherData.temperature}
+          />
 
-        <Main
-          weatherType={getWeatherType(weatherData.temperature)}
-          clothingItems={clothingItems}
-          onCardClick={handleCardClick}
-          temperature={weatherData.temperature}
-          location={weatherData.location}
-          condition={weatherData.condition}
-          sunrise={weatherData.sunrise}
-          sunset={weatherData.sunset}
-        />
+          <Main
+            weatherType={getWeatherType(weatherData.temperature)}
+            clothingItems={clothingItems}
+            onCardClick={handleCardClick}
+            temperature={weatherData.temperature}
+            location={weatherData.location}
+            condition={weatherData.condition}
+            sunrise={weatherData.sunrise}
+            sunset={weatherData.sunset}
+          />
 
-        <Footer />
+          <Footer />
 
-        {selectedCard && (
-          <ItemModal item={selectedCard} onClose={handleModalClose} />
-        )}
+          {selectedCard && (
+            <ItemModal item={selectedCard} onClose={handleModalClose} />
+          )}
 
-        {activeModal === "add-clothes" && (
-          <ModalWithForm
-            name="add-clothes"
-            title="New Garment"
-            buttonText="Add Garment"
-            onClose={handleModalClose}
-            onSubmit={handleSubmit}
-            isFormValid={isFormValid}
-          >
-            <label className="modal__label">
-              Name
-              <input
-                type="text"
-                className="modal__input"
-                name="name"
-                placeholder="Name"
-                value={formValues.name}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
+          {activeModal === "add-clothes" && (
+            <ModalWithForm
+              name="add-clothes"
+              title="New Garment"
+              buttonText="Add Garment"
+              onClose={handleModalClose}
+              onSubmit={handleSubmit}
+              isFormValid={isFormValid}
+            >
+              <label className="modal__label">
+                Name
+                <input
+                  type="text"
+                  className="modal__input"
+                  name="name"
+                  placeholder="Name"
+                  value={formValues.name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
 
-            <label className="modal__label">
-              Image URL
-              <input
-                type="url"
-                className="modal__input"
-                name="imageUrl"
-                placeholder="Image URL"
-                value={formValues.imageUrl}
-                onChange={handleInputChange}
-                required
-              />
-            </label>
+              <label className="modal__label">
+                Image URL
+                <input
+                  type="url"
+                  className="modal__input"
+                  name="imageUrl"
+                  placeholder="Image URL"
+                  value={formValues.imageUrl}
+                  onChange={handleInputChange}
+                  required
+                />
+              </label>
 
-            <fieldset className="modal__fieldset">
-              <legend className="modal__legend">
-                Select the weather type:
-              </legend>
-              {["hot", "warm", "cold"].map((type) => (
-                <label key={type} className="modal__radio-label">
-                  <input
-                    type="radio"
-                    className="modal__radio"
-                    name="weather"
-                    value={type}
-                    checked={formValues.weather === type}
-                    onChange={handleInputChange}
-                  />
-                  {type}
-                </label>
-              ))}
-            </fieldset>
-          </ModalWithForm>
-        )}
+              <fieldset className="modal__fieldset">
+                <legend className="modal__legend">
+                  Select the weather type:
+                </legend>
+                {["hot", "warm", "cold"].map((type) => (
+                  <label key={type} className="modal__radio-label">
+                    <input
+                      type="radio"
+                      className="modal__radio"
+                      name="weather"
+                      value={type}
+                      checked={formValues.weather === type}
+                      onChange={handleInputChange}
+                    />
+                    {type}
+                  </label>
+                ))}
+              </fieldset>
+            </ModalWithForm>
+          )}
+        </div>
       </div>
-    </div>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 
