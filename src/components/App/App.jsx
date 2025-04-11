@@ -6,10 +6,10 @@ import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
-import { defaultClothingItems } from "../../utils/constants";
 import { getWeatherData, getWeatherType } from "../../utils/weatherApi";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 
 import "./App.css";
 
@@ -27,6 +27,7 @@ function App() {
   const [itemToDelete, setItemToDelete] = useState(null);
   const [activeModal, setActiveModal] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((unit) => (unit === "F" ? "C" : "F"));
   };
@@ -52,23 +53,31 @@ function App() {
       })
       .catch((err) => console.error("Weather fetch failed:", err));
 
-    setClothingItems(defaultClothingItems);
+    getItems()
+      .then(setClothingItems)
+      .catch((err) => console.error("Items fetch failed:", err));
   }, []);
 
   const handleCardClick = (item) => setSelectedCard(item);
+
   const handleModalClose = () => {
     setSelectedCard(null);
     setActiveModal("");
     setFormValues({ name: "", imageUrl: "", weather: "hot" });
   };
+
   const handleDeleteRequest = (item) => {
     setItemToDelete(item);
   };
 
   const handleCardDelete = (item) => {
-    setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
-    setItemToDelete(null);
-    setSelectedCard(null);
+    deleteItem(item._id)
+      .then(() => {
+        setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
+        setSelectedCard(null);
+        setItemToDelete(null);
+      })
+      .catch((err) => console.error("Delete failed:", err));
   };
 
   const handleCancelDelete = () => {
@@ -88,13 +97,17 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newItem = {
-      _id: Date.now(),
       name: formValues.name,
-      link: formValues.imageUrl,
       weather: formValues.weather,
+      imageUrl: formValues.imageUrl,
     };
-    setClothingItems((prev) => [newItem, ...prev]);
-    handleModalClose();
+
+    addItem(newItem)
+      .then((item) => {
+        setClothingItems((prev) => [item, ...prev]);
+        handleModalClose();
+      })
+      .catch((err) => console.error("Add item failed:", err));
   };
 
   return (
