@@ -11,7 +11,7 @@
   z-index: 10;
 }
 
-.modal__content {
+.modal__content_type_preview {
   background-color: #ffffff;
   border-radius: 16px;
   width: 498px;
@@ -69,4 +69,20 @@
   font-size: 20px;
   line-height: 24px;
   color: #000000;
+}
+
+.modal__info-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__delete-button {
+  background: none;
+  border: none;
+  color: #ff4d00;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
 }

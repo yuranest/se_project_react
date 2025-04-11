@@ -1,3 +1,4 @@
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -23,6 +24,7 @@ function App() {
 
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
   const [activeModal, setActiveModal] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleToggleSwitchChange = () => {
@@ -59,6 +61,20 @@ function App() {
     setActiveModal("");
     setFormValues({ name: "", imageUrl: "", weather: "hot" });
   };
+  const handleDeleteRequest = (item) => {
+    setItemToDelete(item);
+  };
+
+  const handleCardDelete = (item) => {
+    setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
+    setItemToDelete(null);
+    setSelectedCard(null);
+  };
+
+  const handleCancelDelete = () => {
+    setItemToDelete(null);
+  };
+
   const handleAddClick = () => setActiveModal("add-clothes");
 
   const handleInputChange = (e) => {
@@ -132,7 +148,19 @@ function App() {
           </Routes>
 
           {selectedCard && (
-            <ItemModal item={selectedCard} onClose={handleModalClose} />
+            <ItemModal
+              item={selectedCard}
+              onClose={handleModalClose}
+              onDeleteRequest={handleDeleteRequest}
+            />
+          )}
+
+          {itemToDelete && (
+            <DeleteConfirmationModal
+              item={itemToDelete}
+              onCancel={handleCancelDelete}
+              onConfirm={handleCardDelete}
+            />
           )}
 
           {activeModal === "add-clothes" && (
