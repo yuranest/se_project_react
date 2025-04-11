@@ -7,6 +7,8 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import { defaultClothingItems } from "../../utils/constants";
 import { getWeatherData, getWeatherType } from "../../utils/weatherApi";
+import { Routes, Route } from "react-router-dom";
+import Profile from "../Profile/Profile";
 
 import "./App.css";
 
@@ -27,7 +29,6 @@ function App() {
     setCurrentTemperatureUnit((unit) => (unit === "F" ? "C" : "F"));
   };
 
-  // Form state
   const [formValues, setFormValues] = useState({
     name: "",
     imageUrl: "",
@@ -53,13 +54,11 @@ function App() {
   }, []);
 
   const handleCardClick = (item) => setSelectedCard(item);
-
   const handleModalClose = () => {
     setSelectedCard(null);
     setActiveModal("");
     setFormValues({ name: "", imageUrl: "", weather: "hot" });
   };
-
   const handleAddClick = () => setActiveModal("add-clothes");
 
   const handleInputChange = (e) => {
@@ -72,14 +71,12 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const newItem = {
       _id: Date.now(),
       name: formValues.name,
       link: formValues.imageUrl,
       weather: formValues.weather,
     };
-
     setClothingItems((prev) => [newItem, ...prev]);
     handleModalClose();
   };
@@ -90,24 +87,49 @@ function App() {
     >
       <div className="page">
         <div className="page__content">
-          <Header
-            onAddClick={handleAddClick}
-            location={weatherData.location}
-            temperature={weatherData.temperature}
-          />
-
-          <Main
-            weatherType={getWeatherType(weatherData.temperature)}
-            clothingItems={clothingItems}
-            onCardClick={handleCardClick}
-            temperature={weatherData.temperature}
-            location={weatherData.location}
-            condition={weatherData.condition}
-            sunrise={weatherData.sunrise}
-            sunset={weatherData.sunset}
-          />
-
-          <Footer />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header
+                    onAddClick={handleAddClick}
+                    location={weatherData.location}
+                    temperature={weatherData.temperature}
+                  />
+                  <Main
+                    weatherType={getWeatherType(weatherData.temperature)}
+                    clothingItems={clothingItems}
+                    onCardClick={handleCardClick}
+                    temperature={weatherData.temperature}
+                    location={weatherData.location}
+                    condition={weatherData.condition}
+                    sunrise={weatherData.sunrise}
+                    sunset={weatherData.sunset}
+                  />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <>
+                  <Header
+                    onAddClick={handleAddClick}
+                    location={weatherData.location}
+                    temperature={weatherData.temperature}
+                  />
+                  <Profile
+                    clothingItems={clothingItems}
+                    onCardClick={handleCardClick}
+                    onAddClick={handleAddClick}
+                  />
+                  <Footer />
+                </>
+              }
+            />
+          </Routes>
 
           {selectedCard && (
             <ItemModal item={selectedCard} onClose={handleModalClose} />
@@ -134,7 +156,6 @@ function App() {
                   required
                 />
               </label>
-
               <label className="modal__label">
                 Image URL
                 <input
@@ -147,7 +168,6 @@ function App() {
                   required
                 />
               </label>
-
               <fieldset className="modal__fieldset">
                 <legend className="modal__legend">
                   Select the weather type:

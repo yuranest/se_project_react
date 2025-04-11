@@ -9,6 +9,7 @@
   margin: 0 20px 0 auto;
   background-color: #fff;
   transition: border-color 0.2s ease;
+  z-index: 1;
 }
 
 .toggle-switch__checkbox {
@@ -23,15 +24,17 @@
   height: 28px;
   background-color: #000;
   border-radius: 50%;
-  left: 0;
+
   transition: all 0.4s;
+  z-index: 2;
 }
 
 .toggle-switch__text {
   color: #7e7e7e;
   position: absolute;
-  top: 5px;
+  top: 6px;
   font-weight: 700;
+  z-index: 3;
 }
 
 .toggle-switch__text_F {
