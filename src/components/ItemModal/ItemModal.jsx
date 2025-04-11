@@ -8,7 +8,11 @@ function ItemModal({ item, onClose, onDeleteRequest }) {
         <button className="modal__close" type="button" onClick={onClose}>
           <img src={closeIcon} alt="Close button" />
         </button>
-        <img src={item.link} alt={item.name} className="modal__image" />
+        <img
+          src={item.imageUrl || item.link}
+          alt={item.name}
+          className="modal__image"
+        />
         <ul className="modal__info">
           <li className="modal__info-row">
             <span className="modal__caption">{item.name}</span>

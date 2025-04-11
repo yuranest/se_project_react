@@ -71,9 +71,9 @@ function App() {
   };
 
   const handleCardDelete = (item) => {
-    deleteItem(item._id)
+    deleteItem(item.id)
       .then(() => {
-        setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
+        setClothingItems((prev) => prev.filter((i) => i.id !== item.id));
         setSelectedCard(null);
         setItemToDelete(null);
       })
@@ -103,8 +103,8 @@ function App() {
     };
 
     addItem(newItem)
-      .then((item) => {
-        setClothingItems((prev) => [item, ...prev]);
+      .then((itemWithId) => {
+        setClothingItems((prev) => [itemWithId, ...prev]);
         handleModalClose();
       })
       .catch((err) => console.error("Add item failed:", err));
