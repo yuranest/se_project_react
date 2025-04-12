@@ -1,11 +1,11 @@
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import CurrentTemperatureUnitContext from "../../utils/contexts/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../utils/CurrentTemperatureUnitContext";
 import { getWeatherData, getWeatherType } from "../../utils/weatherApi";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
@@ -32,14 +32,6 @@ function App() {
     setCurrentTemperatureUnit((unit) => (unit === "F" ? "C" : "F"));
   };
 
-  const [formValues, setFormValues] = useState({
-    name: "",
-    imageUrl: "",
-    weather: "hot",
-  });
-
-  const isFormValid = formValues.name && formValues.imageUrl;
-
   useEffect(() => {
     getWeatherData()
       .then((data) => {
@@ -63,7 +55,6 @@ function App() {
   const handleModalClose = () => {
     setSelectedCard(null);
     setActiveModal("");
-    setFormValues({ name: "", imageUrl: "", weather: "hot" });
   };
 
   const handleDeleteRequest = (item) => {
@@ -86,25 +77,10 @@ function App() {
 
   const handleAddClick = () => setActiveModal("add-clothes");
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newItem = {
-      name: formValues.name,
-      weather: formValues.weather,
-      imageUrl: formValues.imageUrl,
-    };
-
-    addItem(newItem)
-      .then((itemWithId) => {
-        setClothingItems((prev) => [itemWithId, ...prev]);
+  const handleSubmit = (formData) => {
+    addItem(formData)
+      .then((item) => {
+        setClothingItems((prev) => [item, ...prev]);
         handleModalClose();
       })
       .catch((err) => console.error("Add item failed:", err));
@@ -177,57 +153,11 @@ function App() {
           )}
 
           {activeModal === "add-clothes" && (
-            <ModalWithForm
-              name="add-clothes"
-              title="New Garment"
-              buttonText="Add Garment"
-              onClose={handleModalClose}
-              onSubmit={handleSubmit}
-              isFormValid={isFormValid}
-            >
-              <label className="modal__label">
-                Name
-                <input
-                  type="text"
-                  className="modal__input"
-                  name="name"
-                  placeholder="Name"
-                  value={formValues.name}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
-              <label className="modal__label">
-                Image URL
-                <input
-                  type="url"
-                  className="modal__input"
-                  name="imageUrl"
-                  placeholder="Image URL"
-                  value={formValues.imageUrl}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
-              <fieldset className="modal__fieldset">
-                <legend className="modal__legend">
-                  Select the weather type:
-                </legend>
-                {["hot", "warm", "cold"].map((type) => (
-                  <label key={type} className="modal__radio-label">
-                    <input
-                      type="radio"
-                      className="modal__radio"
-                      name="weather"
-                      value={type}
-                      checked={formValues.weather === type}
-                      onChange={handleInputChange}
-                    />
-                    {type}
-                  </label>
-                ))}
-              </fieldset>
-            </ModalWithForm>
+            <AddItemModal
+              isOpen={true}
+              onAddItem={handleSubmit}
+              onCloseModal={handleModalClose}
+            />
           )}
         </div>
       </div>
