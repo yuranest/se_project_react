@@ -59,7 +59,9 @@
 .toggle-switch__checkbox:not(:checked) ~ .toggle-switch__text_C {
   color: #7e7e7e;
 }
-
+.toggle-switch:hover > .toggle-switch__text {
+  color: black;
+}
 .toggle-switch__checkbox:checked ~ .toggle-switch__text_C {
   color: #ffffff;
 }

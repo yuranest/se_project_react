@@ -10,8 +10,13 @@ import { getWeatherData, getWeatherType } from "../../utils/weatherApi";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { getItems, addItem, deleteItem } from "../../utils/api";
-
+import avatar from "../../assets/avatar.png";
 import "./App.css";
+
+const user = {
+  name: "Terrence Tegegne",
+  avatar: avatar,
+};
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -98,6 +103,7 @@ function App() {
               element={
                 <>
                   <Header
+                    user={user}
                     onAddClick={handleAddClick}
                     location={weatherData.location}
                     temperature={weatherData.temperature}
@@ -121,11 +127,13 @@ function App() {
               element={
                 <>
                   <Header
+                    user={user}
                     onAddClick={handleAddClick}
                     location={weatherData.location}
                     temperature={weatherData.temperature}
                   />
                   <Profile
+                    user={user}
                     clothingItems={clothingItems}
                     onCardClick={handleCardClick}
                     onAddClick={handleAddClick}

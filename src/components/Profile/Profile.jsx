@@ -2,10 +2,10 @@ import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
-const Profile = ({ clothingItems, onCardClick, onAddClick }) => {
+const Profile = ({ user, clothingItems, onCardClick, onAddClick }) => {
   return (
     <main className="profile">
-      <SideBar />
+      <SideBar user={user} />
       <ClothesSection
         clothingItems={clothingItems}
         onCardClick={onCardClick}

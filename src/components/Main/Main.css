@@ -11,3 +11,41 @@
   font-size: 20px;
   margin-bottom: 34px;
 }
+
+@media (max-width: 768px) {
+  .main {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  .cards {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .cards__text {
+    font-size: 16px;
+    text-align: center;
+    height: auto;
+  }
+
+  .card__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    justify-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    max-width: 375px;
+    margin: 0 auto;
+  }
+
+  .card__list {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}

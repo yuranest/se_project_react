@@ -2,11 +2,11 @@ import React from "react";
 import avatar from "../../assets/avatar.png";
 import "./SideBar.css";
 
-const SideBar = () => {
+const SideBar = ({ user }) => {
   return (
     <aside className="sidebar">
-      <img src={avatar} alt="User avatar" className="sidebar__avatar" />
-      <p className="sidebar__username">Terrence Tegegne</p>
+      <img src={user.avatar} alt="User avatar" className="sidebar__avatar" />
+      <p className="sidebar__username">{user.name}</p>
     </aside>
   );
 };

@@ -1,18 +1,6 @@
 {
   "items": [
     {
-      "id": "0",
-      "name": "Beanie",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
-    },
-    {
-      "id": "1",
-      "name": "Boot",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
-    },
-    {
       "id": "2",
       "name": "Cap",
       "weather": "hot",
@@ -97,8 +85,20 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "id": "2a1b",
-      "name": "home",
+      "id": "2c53",
+      "name": "new 1",
+      "imageUrl": "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "weather": "hot"
+    },
+    {
+      "id": "a188",
+      "name": "new 2",
+      "imageUrl": "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "weather": "cold"
+    },
+    {
+      "id": "5d07",
+      "name": "NEW3",
       "imageUrl": "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "weather": "warm"
     }

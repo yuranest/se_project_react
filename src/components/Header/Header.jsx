@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
-function Header({ onAddClick, location }) {
+function Header({ user, onAddClick, location }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -28,8 +28,8 @@ function Header({ onAddClick, location }) {
 
       <Link to="/profile" className="header__profile-link">
         <div className="header__right">
-          <p className="header__username">Terrence Tegegne</p>
-          <img src={avatar} alt="User avatar" className="header__avatar" />
+          <p className="header__username">{user.name}</p>
+          <img src={user.avatar} alt="User avatar" className="header__avatar" />
         </div>
       </Link>
     </header>
