@@ -5,47 +5,24 @@
   padding: 0;
   gap: 20px;
 }
-.cards__text {
+.weather__text {
   height: 25px;
   font-weight: 700;
   font-size: 20px;
-  margin-bottom: 34px;
-}
-
-@media (max-width: 768px) {
-  .main {
-    max-width: 768px;
-    margin: 0 auto;
-  }
-
-  .cards {
-    margin-top: 16px;
-    text-align: center;
-  }
-
-  .cards__text {
-    font-size: 16px;
-    text-align: center;
-    height: auto;
-  }
-
-  .card__list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    justify-items: center;
-  }
+  margin: 40px 0 34px;
 }
 
 @media (max-width: 480px) {
   .main {
-    max-width: 375px;
-    margin: 0 auto;
+    margin-top: 16px;
+  }
+
+  .weather__text {
+    margin: 32px 0 20px;
   }
 
   .card__list {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
 }

@@ -12,26 +12,25 @@ function Header({ user, onAddClick, location }) {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo-link">
-        <img src={logo} alt="WTWR logo" className="header__logo" />
-      </Link>
+      <div className="header__left">
+        <Link to="/" className="header__logo-link">
+          <img src={logo} alt="WTWR logo" className="header__logo" />
+        </Link>
 
-      <p className="header__date">
-        {currentDate}, {location}
-      </p>
-
-      <ToggleSwitch />
-
-      <button className="header__button" onClick={onAddClick}>
-        + Add clothes
-      </button>
-
-      <Link to="/profile" className="header__profile-link">
-        <div className="header__right">
+        <p className="header__date">
+          {currentDate}, {location}
+        </p>
+      </div>
+      <div className="header__right">
+        <ToggleSwitch className="header__toggleswitch" />
+        <button className="header__button" onClick={onAddClick}>
+          + Add clothes
+        </button>
+        <Link to="/profile" className="header__profile-link">
           <p className="header__username">{user.name}</p>
           <img src={user.avatar} alt="User avatar" className="header__avatar" />
-        </div>
-      </Link>
+        </Link>
+      </div>
     </header>
   );
 }

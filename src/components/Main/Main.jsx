@@ -35,7 +35,7 @@ function Main({
         sunset={sunset}
       />
       <section className="cards">
-        <p className="cards__text">
+        <p className="weather__text">
           Today is {convertedTemperature}°{currentTemperatureUnit} / You may
           want to wear:
         </p>
