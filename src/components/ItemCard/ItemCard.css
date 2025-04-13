@@ -30,6 +30,9 @@
 }
 
 @media (max-width: 480px) {
+  .card {
+    margin: 0;
+  }
   .card__image {
     width: 164px;
     height: 164px;

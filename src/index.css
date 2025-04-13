@@ -1,5 +1,7 @@
 @import url(./vendor/normalize.css);
 
-body {
+.body {
   background-color: #f3f3f3;
+  margin: 0;
+  padding: 0;
 }
