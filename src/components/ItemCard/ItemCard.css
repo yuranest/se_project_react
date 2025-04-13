@@ -1,10 +1,11 @@
 .card {
   background: transparent;
   position: relative;
-  width: 323px;
-  height: 326px;
+  max-width: 323px;
+  max-height: 326px;
   display: flex;
   justify-content: center;
+  margin: 0;
 }
 
 .card__name {
@@ -16,12 +17,25 @@
   border-radius: 4px;
   text-align: center;
   color: #00000080;
-  font-weight: 700;
+  font-weight: 700px;
   font-size: 16px;
+  line-height: 20px;
 }
 
 .card__image {
-  width: 100%;
-  border-width: 1px;
-  border-radius: 10px;
+  width: 323px;
+  height: 326px;
+  border: 1px solid #0000004d;
+  border-radius: 19px;
+}
+
+@media (max-width: 480px) {
+  .card__image {
+    width: 164px;
+    height: 164px;
+  }
+
+  .card__name {
+    top: 7px;
+  }
 }
