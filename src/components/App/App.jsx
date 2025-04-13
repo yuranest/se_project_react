@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import CurrentTemperatureUnitContext from "../../utils/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { getWeatherData, getWeatherType } from "../../utils/weatherApi";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";

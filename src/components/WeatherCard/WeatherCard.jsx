@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CurrentTemperatureUnitContext from "../../utils/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import "./WeatherCard.css";
 
 function WeatherCard({ temperature, condition, sunrise, sunset }) {

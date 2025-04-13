@@ -1,53 +1,96 @@
-# WTWR – What to Wear?
+# WTWR (What to Wear?) — Project 11
 
-A weather-based wardrobe assistant built with React and Vite. WTWR suggests clothing based on the current weather conditions fetched from the OpenWeather API.
+WTWR is a weather-based clothing recommendation app built with React. Users can view the current weather, toggle between Fahrenheit and Celsius, and manage a personal clothing inventory.
 
----
+## 🚀 Features
 
-## 🌤 Overview
+- Real-time weather display using OpenWeather API
+- Temperature unit toggle switch (Fahrenheit ↔ Celsius)
+- Responsive design (desktop and mobile)
+- Profile page with hardcoded user info
+- Add/Delete clothing items (connected to json-server)
+- Modal forms for item interaction
+- Weather-based clothing filtering on main page
 
-WTWR helps users decide what to wear based on real-time weather data. When a user visits the app, it fetches the current temperature and location and displays suggested clothing cards filtered by temperature range. The user can also preview clothing items and add new garments.
+## 🛠 Technologies
 
----
+- React 18
+- React Router DOM v6
+- Context API for temperature toggle
+- Vite for development server and build tool
+- json-server for mock backend API
+- CSS Modules & normalize.css for styling
 
-## ✨ Features
+## 📁 Project Structure
 
-- 🌡 **Real-time Weather**: Uses OpenWeather API to fetch location, temperature, condition, sunrise and sunset.
-- 🧥 **Clothing Cards**: Items are filtered by temperature type: hot, warm, or cold.
-- 🎨 **Dynamic Backgrounds**: WeatherCard background changes based on weather condition and time of day.
-- 🖼 **Modals**: Click a card to preview it, or add new garments through a responsive modal form.
-- 🧠 **React State Management**: Uses hooks (`useState`, `useEffect`) to manage UI and data.
-- 💡 **Responsive Design**: Adapts to desktop and smaller screen widths using flexbox layout.
-
----
-
-## 🗂 File Structure
-
-src/
-├── assets/ # Static images (like weather backgrounds)
-├── components/ # All React UI components (Header, Main, Footer, etc.)
-├── utils/ # API helpers, constants
-├── vendor/ # Fonts and normalize.css
-├── App.jsx # Main app component
-└── main.jsx # App entry point
-
----
-
-## 🔧 Tech Stack
-
-- ⚛️ React 18 + Hooks
-- ⚡ Vite for fast dev/build
-- 📦 CSS Modules & BEM naming
-- 🌐 OpenWeather One Call API
-- 📱 Fully responsive using Flexbox/Grid
-
----
-
-## 📦 Installation
-
-```bash
-git clone https://github.com/se_project_react/se_project_react.git
-cd se_project_react
-npm install
-npm run dev
 ```
+src/
+├── components/
+│   ├── App/
+│   ├── AddItemModal/
+│   ├── ClothesSection/
+│   ├── DeleteConfirmationModal/
+│   ├── Footer/
+│   ├── Header/
+│   ├── ItemCard/
+│   ├── ItemModal/
+│   ├── Main/
+│   ├── ModalWithForm/
+│   ├── Profile/
+│   ├── SideBar/
+│   └── ToggleSwitch/
+├── contexts/
+│   └── CurrentTemperatureUnitContext.js
+├── utils/
+│   ├──constants.js
+│   ├── api.js
+│   └── weatherApi.js
+├── vendor/
+│   ├── fonts/
+│   └── normalize.css
+├── index.css
+└── main.jsx
+```
+
+## 📦 Setup Instructions
+
+1. Clone the repo & install dependencies
+
+   ```bash
+   git clone https://github.com/yourusername/se_project_react.git
+   cd se_project_react
+   npm install
+   ```
+
+2. Start the development server
+
+   ```bash
+   npm run dev
+   ```
+
+3. Start the mock API server (in another terminal)
+   ```bash
+   json-server --watch db.json --port 3001
+   ```
+
+## 🧪 API Endpoints (json-server)
+
+- GET /items — fetch clothing items
+- POST /items — add new item
+- DELETE /items/:\id — delete item
+
+## 📝 Notes
+
+- Ensure all items in `db.json` use `id` as the key.
+- The app is fully responsive based on Figma designs.
+- Profile data is hardcoded until backend integration.
+
+## ✨ Future Enhancements
+
+- User login & authentication
+- Persistent user-specific wardrobe
+- Improved error handling & form validation
+
+---
+
+© 2025 WTWR Project | Developed by Yuriy
