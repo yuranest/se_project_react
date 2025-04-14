@@ -13,7 +13,7 @@ const ClothesSection = ({ clothingItems, onCardClick, onAddClick }) => {
       </div>
       <ul className="profile__card-list">
         {clothingItems.map((item) => (
-          <ItemCard key={item.id} item={item} onCardClick={onCardClick} />
+          <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
         ))}
       </ul>
     </section>

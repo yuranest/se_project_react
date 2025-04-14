@@ -67,6 +67,7 @@ function App() {
   };
 
   const handleCardDelete = (item) => {
+    console.log("Deleting item:", item);
     deleteItem(item.id)
       .then(() => {
         setClothingItems((prev) => prev.filter((i) => i.id !== item.id));
@@ -83,7 +84,12 @@ function App() {
   const handleAddClick = () => setActiveModal("add-clothes");
 
   const handleSubmit = (formData) => {
-    addItem(formData)
+    const newItem = {
+      ...formData,
+      _id: Date.now(),
+    };
+
+    addItem(newItem)
       .then((item) => {
         setClothingItems((prev) => [item, ...prev]);
         handleModalClose();

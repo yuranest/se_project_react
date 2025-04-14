@@ -22,6 +22,8 @@ export const deleteItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
   }).then((res) => {
-    if (!res.ok) throw new Error("Failed to delete item");
+    if (!res.ok) {
+      throw new Error("Failed to delete item");
+    }
   });
 };
