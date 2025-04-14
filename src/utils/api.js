@@ -18,8 +18,8 @@ export const addItem = (item) => {
   });
 };
 
-export const deleteItem = (id) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+export const deleteItem = (_id) => {
+  return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
   }).then((res) => {
     if (!res.ok) {

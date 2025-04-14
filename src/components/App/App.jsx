@@ -67,10 +67,9 @@ function App() {
   };
 
   const handleCardDelete = (item) => {
-    console.log("Deleting item:", item);
-    deleteItem(item.id)
+    deleteItem(item._id)
       .then(() => {
-        setClothingItems((prev) => prev.filter((i) => i.id !== item.id));
+        setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
         setSelectedCard(null);
         setItemToDelete(null);
       })
@@ -85,8 +84,9 @@ function App() {
 
   const handleSubmit = (formData) => {
     const newItem = {
-      ...formData,
-      _id: Date.now(),
+      name: formData.name,
+      weather: formData.weather,
+      imageUrl: formData.imageUrl,
     };
 
     addItem(newItem)

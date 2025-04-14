@@ -70,7 +70,7 @@ src/
 
 3. Start the mock API server (in another terminal)
    ```bash
-   json-server --watch db.json --port 3001
+   npx json-server --watch db.json --port 3001 --id _id
    ```
 
 ## 🧪 API Endpoints (json-server)
