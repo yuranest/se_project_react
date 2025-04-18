@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import closeIcon from "../../assets/form-modal__close.png";
+import { useModalClose } from "../../hooks/useModalClose";
 
 function ModalWithForm({
   title,
@@ -10,6 +11,8 @@ function ModalWithForm({
   isFormValid,
   children,
 }) {
+  useModalClose(true, onClose);
+
   return (
     <div className={`modal modal_type_${name}`}>
       <form className="modal__form" name={name} onSubmit={onSubmit}>

@@ -62,6 +62,22 @@ function App() {
     setActiveModal("");
   };
 
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleModalClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
   const handleDeleteRequest = (item) => {
     setItemToDelete(item);
   };
@@ -82,7 +98,7 @@ function App() {
 
   const handleAddClick = () => setActiveModal("add-clothes");
 
-  const handleSubmit = (formData) => {
+  const handleAddItemFormSubmit = (formData) => {
     const newItem = {
       name: formData.name,
       weather: formData.weather,
@@ -155,21 +171,24 @@ function App() {
               item={selectedCard}
               onClose={handleModalClose}
               onDeleteRequest={handleDeleteRequest}
+              isOnlyModalOpen={!itemToDelete}
             />
           )}
 
           {itemToDelete && (
             <DeleteConfirmationModal
+              isOpen={true}
               item={itemToDelete}
               onCancel={handleCancelDelete}
               onConfirm={handleCardDelete}
+              isOnlyModalOpen={true}
             />
           )}
 
           {activeModal === "add-clothes" && (
             <AddItemModal
               isOpen={true}
-              onAddItem={handleSubmit}
+              onAddItem={handleAddItemFormSubmit}
               onCloseModal={handleModalClose}
             />
           )}

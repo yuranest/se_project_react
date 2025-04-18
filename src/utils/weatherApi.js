@@ -1,14 +1,10 @@
 import { latitude, longitude, weatherApiKey } from "./constants";
+import { checkResponse } from "./api";
 
 const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`;
 
 export function getWeatherData() {
-  return fetch(weatherUrl).then((res) => {
-    if (!res.ok) {
-      throw new Error("Weather fetch failed");
-    }
-    return res.json();
-  });
+  return fetch(weatherUrl).then(checkResponse);
 }
 
 export function getWeatherType(temp) {

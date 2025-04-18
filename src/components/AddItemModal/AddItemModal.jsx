@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
-  const [formValues, setFormValues] = useState({
+  const { values, handleChange, setValues } = useForm({
     name: "",
     imageUrl: "",
     weather: "hot",
   });
 
-  const isFormValid = formValues.name && formValues.imageUrl;
+  const isFormValid = values.name && values.imageUrl;
 
   useEffect(() => {
     if (isOpen) {
-      setFormValues({ name: "", imageUrl: "", weather: "hot" });
+      setValues({ name: "", imageUrl: "", weather: "hot" });
     }
-  }, [isOpen]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prev) => ({ ...prev, [name]: value }));
-  };
+  }, [isOpen, setValues]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem(formValues);
+    onAddItem(values);
   };
 
   return (
@@ -42,8 +38,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           className="modal__input"
           name="name"
           placeholder="Name"
-          value={formValues.name}
-          onChange={handleInputChange}
+          value={values.name}
+          onChange={handleChange}
           required
         />
       </label>
@@ -54,8 +50,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           className="modal__input"
           name="imageUrl"
           placeholder="Image URL"
-          value={formValues.imageUrl}
-          onChange={handleInputChange}
+          value={values.imageUrl}
+          onChange={handleChange}
           required
         />
       </label>
@@ -68,8 +64,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
               className="modal__radio"
               name="weather"
               value={type}
-              checked={formValues.weather === type}
-              onChange={handleInputChange}
+              checked={values.weather === type}
+              onChange={handleChange}
             />
             {type}
           </label>

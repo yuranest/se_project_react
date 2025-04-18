@@ -1,8 +1,16 @@
 import React from "react";
 import "./DeleteConfirmationModal.css";
 import closeIcon from "../../assets/form-modal__close.png";
+import { useModalClose } from "../../hooks/useModalClose";
 
-function DeleteConfirmationModal({ item, onCancel, onConfirm }) {
+function DeleteConfirmationModal({
+  item,
+  onCancel,
+  onConfirm,
+  isOnlyModalOpen,
+}) {
+  useModalClose(isOnlyModalOpen, onCancel);
+
   return (
     <div className="modal modal_type_confirm">
       <div className="modal__content modal__content_type_confirm">

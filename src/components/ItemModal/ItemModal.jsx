@@ -1,7 +1,10 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/item-modal__close.png";
+import { useModalClose } from "../../hooks/useModalClose";
 
-function ItemModal({ item, onClose, onDeleteRequest }) {
+function ItemModal({ item, onClose, onDeleteRequest, isOnlyModalOpen }) {
+  useModalClose(isOnlyModalOpen, onClose);
+
   return (
     <div className="modal modal_type_preview">
       <div className="modal__content modal__content_type_preview">
