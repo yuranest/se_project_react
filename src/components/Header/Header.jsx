@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
-function Header({ user, onAddClick, location }) {
+function Header({
+  user,
+  onAddClick,
+  location,
+  onRegisterClick,
+  onLoginClick,
+  isLoggedIn,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -21,15 +27,33 @@ function Header({ user, onAddClick, location }) {
           {currentDate}, {location}
         </p>
       </div>
+
       <div className="header__right">
         <ToggleSwitch className="header__toggleswitch" />
-        <button className="header__button" onClick={onAddClick}>
-          + Add clothes
-        </button>
-        <Link to="/profile" className="header__profile-link">
-          <p className="header__username">{user.name}</p>
-          <img src={user.avatar} alt="User avatar" className="header__avatar" />
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <button className="header__button" onClick={onAddClick}>
+              + Add clothes
+            </button>
+            <Link to="/profile" className="header__profile-link">
+              <p className="header__username">{user?.name}</p>
+              <img
+                src={user?.avatar}
+                alt="User avatar"
+                className="header__avatar"
+              />
+            </Link>
+          </>
+        ) : (
+          <>
+            <button className="header__button" onClick={onLoginClick}>
+              Log In
+            </button>
+            <button className="header__button" onClick={onRegisterClick}>
+              Sign Up
+            </button>
+          </>
+        )}
       </div>
     </header>
   );
