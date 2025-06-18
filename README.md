@@ -1,96 +1,90 @@
-# WTWR (What to Wear?) — Project 11
+# WTWR (What to Wear?) — Project 14
 
-WTWR is a weather-based clothing recommendation app built with React. Users can view the current weather, toggle between Fahrenheit and Celsius, and manage a personal clothing inventory.
+WTWR is a full-stack weather-based clothing recommendation app built with React and Express/MongoDB.
+Users can view the current weather, toggle between Fahrenheit and Celsius, register/login, edit their profile, and manage a personal clothing inventory.
 
 ## 🚀 Features
 
 - Real-time weather display using OpenWeather API
+- JWT-based authentication (register, login, logout)
+- Protected routes (Profile page only for authorized users)
+- Token persisted in localStorage
+- Profile page with avatar & user name (editable)
 - Temperature unit toggle switch (Fahrenheit ↔ Celsius)
 - Responsive design (desktop and mobile)
-- Profile page with hardcoded user info
-- Add/Delete clothing items (connected to json-server)
+- Add/Delete clothing items (connected to backend API)
+- Like/unlike clothing items
 - Modal forms for item interaction
 - Weather-based clothing filtering on main page
 
-## 🛠 Technologies
+## 🛠️ Technologies
 
 - React 18
 - React Router DOM v6
-- Context API for temperature toggle
+- Context API for temperature toggle & user context
 - Vite for development server and build tool
-- json-server for mock backend API
+- Express.js + MongoDB backend (Project 12/13)
+- JWT Authentication
 - CSS Modules & normalize.css for styling
-
-## 📁 Project Structure
-
-```
-src/
-├── components/
-│   ├── App/
-│   ├── AddItemModal/
-│   ├── ClothesSection/
-│   ├── DeleteConfirmationModal/
-│   ├── Footer/
-│   ├── Header/
-│   ├── ItemCard/
-│   ├── ItemModal/
-│   ├── Main/
-│   ├── ModalWithForm/
-│   ├── Profile/
-│   ├── SideBar/
-│   └── ToggleSwitch/
-├── contexts/
-│   └── CurrentTemperatureUnitContext.js
-├── utils/
-│   ├──constants.js
-│   ├── api.js
-│   └── weatherApi.js
-├── vendor/
-│   ├── fonts/
-│   └── normalize.css
-├── index.css
-└── main.jsx
-```
 
 ## 📦 Setup Instructions
 
 1. Clone the repo & install dependencies
 
-   ```bash
-   git clone https://github.com/yourusername/se_project_react.git
-   cd se_project_react
-   npm install
-   ```
+```bash
+git clone https://github.com/yuranest/se_project_react.git
+cd se_project_react
+npm install
+```
 
-2. Start the development server
+2. Start the frontend (React app)
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
-3. Start the mock API server (in another terminal)
-   ```bash
-   npx json-server --watch db.json --port 3001 --id _id
-   ```
+3. Start the backend (Express API — Project 12/13, se_project_express):
 
-## 🧪 API Endpoints (json-server)
+```bash
+npm start
+```
 
-- GET /items — fetch clothing items
-- POST /items — add new item
-- DELETE /items/:\id — delete item
+> ⚠️ Make sure your MongoDB is running (`mongod`) and `.env` is configured.
 
-## 📝 Notes
+## 📊 API Endpoints (Express backend)
 
-- Ensure all items in `db.json` use `id` as the key.
-- The app is fully responsive based on Figma designs.
-- Profile data is hardcoded until backend integration.
+### Items:
 
-## ✨ Future Enhancements
+- GET /items
+- POST /items (auth required)
+- DELETE /items/\:id (auth required)
+- PUT /items/\:id/likes (auth required)
+- DELETE /items/\:id/likes (auth required)
 
-- User login & authentication
-- Persistent user-specific wardrobe
-- Improved error handling & form validation
+### User:
+
+- POST /signup
+- POST /signin
+- GET /users/me (auth required)
+- PATCH /users/me (auth required)
+
+### Weather API:
+
+- GET OpenWeather API (client-side)
+
+## 📄 Backend Repository
+
+[https://github.com/yuranest/se_project_express.git](https://github.com/yuranest/se_project_express.git)
 
 ---
 
-© 2025 WTWR Project | Developed by Yuriy
+## ✨ Future Enhancements
+
+- Improved form validation
+- Better UX for loading/error states
+- "My wardrobe" personal filtering
+- Edit/Delete own items
+
+---
+
+© 2025 WTWR Project | Developed by Yuriy Nesterenko

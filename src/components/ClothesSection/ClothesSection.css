@@ -1,5 +1,6 @@
 .profile__items {
   flex: 1;
+  margin-left: 116px;
 }
 
 .profile__items-header {
@@ -31,5 +32,4 @@
   flex-wrap: wrap;
   gap: 20px;
   padding: 0;
-  margin: 0;
 }

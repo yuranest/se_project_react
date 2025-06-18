@@ -7,9 +7,11 @@ const SideBar = ({ user, onSignOut, onEditProfile }) => {
 
   return (
     <aside className="sidebar">
-      <img src={user.avatar} alt="User avatar" className="sidebar__avatar" />
-      <p className="sidebar__username">{user.name}</p>
-      <button className="sidebar__logout" onClick={onEditProfile}>
+      <div className="sidebar__top">
+        <img src={user.avatar} alt="User avatar" className="sidebar__avatar" />
+        <p className="sidebar__username">{user.name}</p>
+      </div>
+      <button className="sidebar__change" onClick={onEditProfile}>
         Change profile data
       </button>
       <button className="sidebar__logout" onClick={onSignOut}>

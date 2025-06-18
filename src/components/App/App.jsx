@@ -23,6 +23,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { register, authorize, checkToken } from "../../utils/auth";
 import "./App.css";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -255,7 +256,7 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Header
                       user={currentUser}
                       onAddClick={handleAddClick}
@@ -273,7 +274,7 @@ function App() {
                       onCardLike={handleCardLike}
                     />
                     <Footer />
-                  </>
+                  </ProtectedRoute>
                 }
               />
             </Routes>
