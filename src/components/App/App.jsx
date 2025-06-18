@@ -179,8 +179,19 @@ function App() {
     setItemToDelete(item);
   };
 
+  const handleCancelDelete = () => {
+    setItemToDelete(null);
+  };
+
   const handleCardDelete = (item) => {
-    deleteItem(item._id)
+    const token = localStorage.getItem("jwt");
+
+    if (!token) {
+      console.warn("No token — please log in first.");
+      return;
+    }
+
+    deleteItem(item._id, token)
       .then(() => {
         setClothingItems((prev) => prev.filter((i) => i._id !== item._id));
         setSelectedCard(null);
@@ -188,25 +199,33 @@ function App() {
       })
       .catch((err) => console.error("Delete failed:", err));
   };
-
-  const handleCancelDelete = () => {
-    setItemToDelete(null);
-  };
-
   const handleAddClick = () => setActiveModal("add-clothes");
 
   const handleSwitchToRegister = () => {
     closeAllModals();
     setIsRegisterModalOpen(true);
   };
+
+  const handleSwitchToLogin = () => {
+    closeAllModals();
+    setIsLoginModalOpen(true);
+  };
+
   const handleAddItemFormSubmit = (formData) => {
+    const token = localStorage.getItem("jwt");
+
+    if (!token) {
+      console.warn("No token — please log in first.");
+      return;
+    }
+
     const newItem = {
       name: formData.name,
       weather: formData.weather,
       imageUrl: formData.imageUrl,
     };
 
-    addItem(newItem)
+    addItem(newItem, token)
       .then((item) => {
         setClothingItems((prev) => [item, ...prev]);
         closeAllModals();
@@ -320,6 +339,7 @@ function App() {
                 isOpen={true}
                 onClose={closeAllModals}
                 onRegister={handleRegister}
+                onSwitchToLogin={handleSwitchToLogin}
               />
             )}
 

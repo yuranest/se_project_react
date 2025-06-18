@@ -15,17 +15,23 @@ export const getItems = () => {
   return request(`${baseUrl}/items`);
 };
 
-export const addItem = (item) => {
+export const addItem = (item, token) => {
   return request(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify(item),
   });
 };
 
-export const deleteItem = (_id) => {
+export const deleteItem = (_id, token) => {
   return request(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 };
 

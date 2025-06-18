@@ -1,6 +1,7 @@
-# WTWR (What to Wear?) — Project 14
 
-WTWR is a full-stack weather-based clothing recommendation app built with React and Express/MongoDB.
+# WTWR (What to Wear?) — Project 14 | Sprint 14
+
+WTWR is a full-stack weather-based clothing recommendation app built with React and Express/MongoDB.  
 Users can view the current weather, toggle between Fahrenheit and Celsius, register/login, edit their profile, and manage a personal clothing inventory.
 
 ## 🚀 Features
@@ -15,6 +16,7 @@ Users can view the current weather, toggle between Fahrenheit and Celsius, regis
 - Add/Delete clothing items (connected to backend API)
 - Like/unlike clothing items
 - Modal forms for item interaction
+- "or Register" / "or Log in" switch between modals (UX requirement from Figma)
 - Weather-based clothing filtering on main page
 
 ## 🛠️ Technologies
@@ -29,24 +31,22 @@ Users can view the current weather, toggle between Fahrenheit and Celsius, regis
 
 ## 📦 Setup Instructions
 
-1. Clone the repo & install dependencies
+### Frontend (React app)
 
 ```bash
 git clone https://github.com/yuranest/se_project_react.git
 cd se_project_react
 npm install
-```
-
-2. Start the frontend (React app)
-
-```bash
 npm run dev
 ```
 
-3. Start the backend (Express API — Project 12/13, se_project_express):
+### Backend (Express API — Project 12/13)
 
 ```bash
-npm start
+git clone https://github.com/yuranest/se_project_express.git
+cd se_project_express
+npm install
+npm run start
 ```
 
 > ⚠️ Make sure your MongoDB is running (`mongod`) and `.env` is configured.
@@ -55,18 +55,18 @@ npm start
 
 ### Items:
 
-- GET /items
-- POST /items (auth required)
-- DELETE /items/\:id (auth required)
-- PUT /items/\:id/likes (auth required)
-- DELETE /items/\:id/likes (auth required)
+- GET /items — Get all items
+- POST /items — Create new item (auth required)
+- DELETE /items/:id — Delete item (auth required)
+- PUT /items/:id/likes — Like item (auth required)
+- DELETE /items/:id/likes — Unlike item (auth required)
 
-### User:
+### Users:
 
-- POST /signup
-- POST /signin
-- GET /users/me (auth required)
-- PATCH /users/me (auth required)
+- POST /signup — Register new user
+- POST /signin — Login user
+- GET /users/me — Get user profile (auth required)
+- PATCH /users/me — Update user profile (auth required)
 
 ### Weather API:
 
