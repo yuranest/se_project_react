@@ -1,12 +1,17 @@
+import React from "react";
+import avatar from "../../assets/avatar.png";
 import "./SideBar.css";
 
-const SideBar = ({ user, onSignOut }) => {
+const SideBar = ({ user, onSignOut, onEditProfile }) => {
   if (!user) return null;
 
   return (
     <aside className="sidebar">
       <img src={user.avatar} alt="User avatar" className="sidebar__avatar" />
       <p className="sidebar__username">{user.name}</p>
+      <button className="sidebar__logout" onClick={onEditProfile}>
+        Change profile data
+      </button>
       <button className="sidebar__logout" onClick={onSignOut}>
         Log out
       </button>

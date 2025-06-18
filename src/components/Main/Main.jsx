@@ -8,6 +8,7 @@ function Main({
   weatherType,
   clothingItems,
   onCardClick,
+  onCardLike,
   temperature,
   location,
   condition,
@@ -42,7 +43,12 @@ function Main({
       </section>
       <ul className="card__list">
         {filteredItems.map((item) => (
-          <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+          <ItemCard
+            key={item._id}
+            item={item}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+          />
         ))}
       </ul>
     </main>

@@ -8,14 +8,21 @@ const Profile = ({
   onCardClick,
   onAddClick,
   onSignOut,
+  onEditProfile,
+  onCardLike,
 }) => {
   return (
     <main className="profile">
-      <SideBar user={user} onSignOut={onSignOut} />
+      <SideBar
+        user={user}
+        onSignOut={onSignOut}
+        onEditProfile={onEditProfile}
+      />
       <ClothesSection
         clothingItems={clothingItems}
         onCardClick={onCardClick}
         onAddClick={onAddClick}
+        onCardLike={onCardLike}
       />
     </main>
   );

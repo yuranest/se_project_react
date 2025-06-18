@@ -2,7 +2,12 @@ import React from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-const ClothesSection = ({ clothingItems, onCardClick, onAddClick }) => {
+const ClothesSection = ({
+  clothingItems,
+  onCardClick,
+  onAddClick,
+  onCardLike,
+}) => {
   return (
     <section className="profile__items">
       <div className="profile__items-header">
@@ -13,7 +18,12 @@ const ClothesSection = ({ clothingItems, onCardClick, onAddClick }) => {
       </div>
       <ul className="profile__card-list">
         {clothingItems.map((item) => (
-          <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+          <ItemCard
+            key={item._id}
+            item={item}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+          />
         ))}
       </ul>
     </section>

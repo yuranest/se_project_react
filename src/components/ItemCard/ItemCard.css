@@ -29,6 +29,23 @@
   border-radius: 19px;
 }
 
+.card__like-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 18px;
+  height: 15px;
+}
+
+.card__like-button img {
+  width: 100%;
+  height: auto;
+}
+
 @media (max-width: 480px) {
   .card {
     margin: 0;
