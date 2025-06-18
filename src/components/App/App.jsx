@@ -44,6 +44,7 @@ function App() {
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginError, setLoginError] = useState("");
 
   const navigate = useNavigate();
 
@@ -110,9 +111,13 @@ function App() {
       })
       .then((userData) => {
         setCurrentUser(userData);
+        setLoginError("");
         closeAllModals();
       })
-      .catch((err) => console.error("Login failed:", err));
+      .catch((err) => {
+        console.error("Login failed:", err);
+        setLoginError("Incorrect email or password");
+      });
   };
 
   const handleSignOut = () => {
@@ -190,6 +195,10 @@ function App() {
 
   const handleAddClick = () => setActiveModal("add-clothes");
 
+  const handleSwitchToRegister = () => {
+    closeAllModals();
+    setIsRegisterModalOpen(true);
+  };
   const handleAddItemFormSubmit = (formData) => {
     const newItem = {
       name: formData.name,
@@ -319,6 +328,8 @@ function App() {
                 isOpen={true}
                 onClose={closeAllModals}
                 onLogin={handleLogin}
+                loginError={loginError}
+                onSwitchToRegister={handleSwitchToRegister}
               />
             )}
 

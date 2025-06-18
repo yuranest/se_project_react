@@ -110,3 +110,16 @@
   font-weight: 700;
   opacity: 0.6;
 }
+.modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.login__switch-link {
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #00000080;
+}

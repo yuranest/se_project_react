@@ -2,7 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 import { useEffect } from "react";
 
-function RegisterModal({ isOpen, onClose, onRegister }) {
+function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin }) {
   const { values, handleChange, setValues } = useForm({
     name: "",
     avatar: "",
@@ -32,6 +32,7 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
+      onSwitchToLogin={onSwitchToLogin}
     >
       <label className="modal__label">
         Name

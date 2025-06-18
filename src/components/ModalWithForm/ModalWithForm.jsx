@@ -9,6 +9,8 @@ function ModalWithForm({
   onClose,
   onSubmit,
   isFormValid,
+  onSwitchToRegister,
+  onSwitchToLogin,
   children,
 }) {
   useModalClose(true, onClose);
@@ -23,9 +25,39 @@ function ModalWithForm({
 
         {children}
 
-        <button type="submit" className="modal__submit" disabled={!isFormValid}>
-          {buttonText}
-        </button>
+        <div className="modal__actions">
+          <button
+            type="submit"
+            className="modal__submit"
+            disabled={!isFormValid}
+          >
+            {buttonText}
+          </button>
+
+          {name === "login" && (
+            <span
+              className="login__switch-link"
+              onClick={() => {
+                onClose();
+                onSwitchToRegister();
+              }}
+            >
+              or Register
+            </span>
+          )}
+
+          {name === "register" && (
+            <span
+              className="login__switch-link"
+              onClick={() => {
+                onClose();
+                onSwitchToLogin();
+              }}
+            >
+              or Log in
+            </span>
+          )}
+        </div>
       </form>
     </div>
   );

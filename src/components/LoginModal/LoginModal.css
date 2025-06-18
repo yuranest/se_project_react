@@ -1,0 +1,17 @@
+.login__error {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.modal__input_error {
+  border-bottom: 2px solid #ff4d4d;
+  color: #ff4d4d;
+}
+
+.modal__label_error {
+  color: #ff4d4d;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
