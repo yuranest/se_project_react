@@ -1,5 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../hooks/useForm";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { useEffect } from "react";
 import "./LoginModal.css";
 
@@ -10,18 +10,14 @@ function LoginModal({
   loginError,
   onSwitchToRegister,
 }) {
-  const { values, handleChange, setValues } = useForm({
-    email: "",
-    password: "",
-  });
-
-  const isFormValid = values.email && values.password;
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
+    useFormAndValidation();
 
   useEffect(() => {
     if (isOpen) {
-      setValues({ email: "", password: "" });
+      resetForm({ email: "", password: "" }, {}, false);
     }
-  }, [isOpen, setValues]);
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +31,7 @@ function LoginModal({
       buttonText="Log In"
       onClose={onClose}
       onSubmit={handleSubmit}
-      isFormValid={isFormValid}
+      isFormValid={isValid}
       onSwitchToRegister={onSwitchToRegister}
     >
       <label className="modal__label">
@@ -45,7 +41,7 @@ function LoginModal({
           type="email"
           name="email"
           placeholder="Email"
-          value={values.email}
+          value={values.email || ""}
           onChange={handleChange}
           required
         />
@@ -64,7 +60,7 @@ function LoginModal({
           type="password"
           name="password"
           placeholder="Password"
-          value={values.password}
+          value={values.password || ""}
           onChange={handleChange}
           required
         />

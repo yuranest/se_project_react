@@ -65,9 +65,9 @@
 }
 
 .modal__legend {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
-  margin-bottom: 4px;
+  margin: 4px 0 12px 0;
 }
 
 .modal__radio-label {
@@ -75,6 +75,12 @@
   align-items: center;
   gap: 8px;
   font-size: 16px;
+  font-weight: 700;
+  color: #00000080;
+}
+
+.modal__radio-label input:checked + span {
+  color: #000000;
 }
 
 .modal__radio {

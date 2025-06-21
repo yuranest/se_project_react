@@ -45,6 +45,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -129,12 +130,14 @@ function App() {
 
   const handleUpdateUser = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
+    setIsLoading(true);
     updateUser({ name, avatar }, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         closeAllModals();
       })
-      .catch((err) => console.error("Profile update failed:", err));
+      .catch((err) => console.error("Profile update failed:", err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleCardClick = (item) => setSelectedCard(item);
@@ -199,6 +202,7 @@ function App() {
       })
       .catch((err) => console.error("Delete failed:", err));
   };
+
   const handleAddClick = () => setActiveModal("add-clothes");
 
   const handleSwitchToRegister = () => {
@@ -225,12 +229,14 @@ function App() {
       imageUrl: formData.imageUrl,
     };
 
+    setIsLoading(true);
     addItem(newItem, token)
       .then((item) => {
         setClothingItems((prev) => [item, ...prev]);
         closeAllModals();
       })
-      .catch((err) => console.error("Add item failed:", err));
+      .catch((err) => console.error("Add item failed:", err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -262,8 +268,8 @@ function App() {
                       onAddClick={handleAddClick}
                       location={weatherData.location}
                       temperature={weatherData.temperature}
-                      onRegisterClick={() => setIsRegisterModalOpen(true)}
-                      onLoginClick={() => setIsLoginModalOpen(true)}
+                      onRegisterClick={handleSwitchToRegister}
+                      onLoginClick={handleSwitchToLogin}
                       isLoggedIn={isLoggedIn}
                     />
                     <Main
@@ -315,7 +321,6 @@ function App() {
                 isOnlyModalOpen={!itemToDelete}
               />
             )}
-
             {itemToDelete && (
               <DeleteConfirmationModal
                 isOpen={true}
@@ -325,15 +330,14 @@ function App() {
                 isOnlyModalOpen={true}
               />
             )}
-
             {activeModal === "add-clothes" && (
               <AddItemModal
                 isOpen={true}
+                isLoading={isLoading}
                 onAddItem={handleAddItemFormSubmit}
                 onCloseModal={closeAllModals}
               />
             )}
-
             {isRegisterModalOpen && (
               <RegisterModal
                 isOpen={true}
@@ -342,7 +346,6 @@ function App() {
                 onSwitchToLogin={handleSwitchToLogin}
               />
             )}
-
             {isLoginModalOpen && (
               <LoginModal
                 isOpen={true}
@@ -352,10 +355,10 @@ function App() {
                 onSwitchToRegister={handleSwitchToRegister}
               />
             )}
-
             {isEditProfileModalOpen && (
               <EditProfileModal
                 isOpen={true}
+                isLoading={isLoading}
                 onClose={closeAllModals}
                 onUpdateUser={handleUpdateUser}
               />

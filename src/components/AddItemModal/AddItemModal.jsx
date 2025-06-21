@@ -57,7 +57,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       </label>
       <fieldset className="modal__fieldset">
         <legend className="modal__legend">Select the weather type:</legend>
-        {["hot", "warm", "cold"].map((type) => (
+        {["Hot", "Warm", "Cold"].map((type) => (
           <label key={type} className="modal__radio-label">
             <input
               type="radio"
@@ -67,7 +67,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
               checked={values.weather === type}
               onChange={handleChange}
             />
-            {type}
+            <span>{type}</span>{" "}
           </label>
         ))}
       </fieldset>
