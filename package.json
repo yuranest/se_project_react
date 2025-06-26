@@ -7,8 +7,10 @@
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && scp -r ./dist/* yuranest@wtwrapp.ugo.si:/home/yuranest/frontend"
   },
+  "homepage": "https://wtwrapp.ugo.si",
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
